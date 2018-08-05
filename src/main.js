@@ -2,8 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import '@progress/kendo-ui'
+import '@progress/kendo-theme-default/dist/all.css'
+import {Button, ButtonsInstallser} from '@progress/kendo-buttons-vue-wrapper'
 
 Vue.config.productionTip = false
+Vue.use(ButtonsInstallser)
 
 /* eslint-disable no-new */
 new Vue({
