@@ -1,18 +1,37 @@
 <template>
   <div class="orders">
-    
-    <kendo-grid 
-        :data-source="localDataSource"
+    <kendo-datasource ref="remoteDataSource"
+                      :transport-read-url="'http://localhost:5000/api/orders'"
+                      :transport-read-data-type="'json'"
+                      :transport-cross-domain = 'true'
+                      :transport-read-type="'GET'"
+                      :page-size='20'>
+    </kendo-datasource>
+    <kendo-grid
+        :data-source-ref="'remoteDataSource'"
         :groupable='true'
+        :filterable='true'
         :sortable='true'
+        :selectable="'row'"
+        :navigatable='true'
         :pageable-refresh='true'
         :pageable-page-sizes='true'
-        :pageable-button-count="5" >
-        <kendo-grid-column field="OrderID" title="OrderID" :width="40"></kendo-grid-column>
-        <kendo-grid-column field="Customer" title="Customer"></kendo-grid-column>
-        <kendo-grid-column field="Product" title="Product" :width="80" ></kendo-grid-column>
-        <kendo-grid-column field="Quantity" title="Quantity" :width="60"></kendo-grid-column>
-        <kendo-grid-column field="Status" :width="120"></kendo-grid-column>
+        :pageable-button-count="5"
+        :change="onChange"
+        :name="ordersGrid"
+         >
+        <kendo-grid-column field="requestId" title="OrderID" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="requestStatusCode" title="Status" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="orderNumber" title="OrderNumber" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="partNumber" title="PartNumber" :width="60"></kendo-grid-column>
+        <kendo-grid-column field="quantity" title="Quantiy" :width="30" ></kendo-grid-column>
+        <kendo-grid-column field="endUserDiscount" title="EUD" :width="30"></kendo-grid-column>
+        <kendo-grid-column field="amount" title="Amount" :width="30"></kendo-grid-column>
+        <kendo-grid-column field="partnerDiscount" title="PD" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="dueToKL" title="DueToKL" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="currency" title="Currency" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="deliveryDate" title="DeliveryDate" :width="60"></kendo-grid-column>
+        <kendo-grid-column field="purchaseOrder" title="PO" :width="40"></kendo-grid-column>
     </kendo-grid>
 
   </div>
@@ -21,35 +40,46 @@
 <script>
 export default {
   name: 'Orders',
+  methods :{
+      onChange : function(e){
+          var row = e.sender.select();
+          console.log(row[0]);
+          var dataSource=e.sender.dataSource;
+          var content = e.sender.content;
+          //Selecting Grid
+          var gview = this;
+          //Getting selected item
+          var selectedItem = gview.dataItem(gview.select());
+          console.log(selectedItem);
+      }
+  },
   data () {
     return {
         localDataSource: [{
-                "OrderID": 1,
-                "Customer": "DE",
-                "Product": "KES",
-                "Quantity": 39,
-                "Status": "Awaiting approval",
+                "requestId": 1,
+                "requestStatusCode": "Initial",
+                "orderNumber": "423232-3233-323",
+                "partNumber": 72,
+                "quantity": 100,
+                "endUserDiscount": 10,
+                "amount": 456,
+                "partnerDiscount" : 45,
+                "dueToKL" : 17,
+                "deliveryDate" : "14.01.1977",
+                "purchaseOrder": "Nothing"
             },
             {
-                "OrderID": 2,
-                "Customer": "DE",
-                "Product": "KIS",
-                "Quantity": 20,
-                "Status": "Awaiting approval",
-            },
-            {
-                "OrderID": 3,
-                "Customer": "RU",
-                "Product": "KES",
-                "Quantity": 17,
-                "Status": "Awaiting approval",
-            },
-            {
-                "OrderID": 4,
-                "Customer": "RU",
-                "Product": "KIS",
-                "Quantity": 80,
-                "Status": "Awaiting approval",
+                "requestId": 2,
+                "requestStatusCode": "Initial",
+                "orderNumber": "423232-3233-323",
+                "partNumber": 72,
+                "quantity": 100,
+                "endUserDiscount": 10,
+                "amount": 456,
+                "partnerDiscount" : 45,
+                "dueToKL" : 17,
+                "deliveryDate" : "14.01.1977",
+                "purchaseOrder": "Nothing"
             }]
       }
   }
