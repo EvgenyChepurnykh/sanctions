@@ -21,6 +21,7 @@ export default {
       alert("Confirm for requestId = "+this.requestId)
     },
     onClick2 :function(ev){
+      if (this.requestId == -1) return;
       alert("Recall for requestId = "+ this. requestId)
     }
   }
