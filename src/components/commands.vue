@@ -8,18 +8,20 @@
 
 <script>
 export default {
+  props:['requestId'],
   name: 'Commands',
   data () {
     return {
-      
+
     }
   },
   methods:{
     onClick1 : function(ev){
-      console.log("OnClick1 clicked")
+      if (this.requestId == -1)  return;
+      alert("Confirm for requestId = "+this.requestId)
     },
     onClick2 :function(ev){
-      console.log("OnClick2 clicked")
+      alert("Recall for requestId = "+ this. requestId)
     }
   }
 }

@@ -17,8 +17,8 @@
         :pageable-refresh='true'
         :pageable-page-sizes='true'
         :pageable-button-count="5"
+        :resizable = 'true'
         :change="onChange"
-        :name="ordersGrid"
          >
         <kendo-grid-column field="requestId" title="OrderID" :width="40"></kendo-grid-column>
         <kendo-grid-column field="requestStatusCode" title="Status" :width="40"></kendo-grid-column>
@@ -42,15 +42,10 @@ export default {
   name: 'Orders',
   methods :{
       onChange : function(e){
-          var row = e.sender.select();
-          console.log(row[0]);
-          var dataSource=e.sender.dataSource;
-          var content = e.sender.content;
-          //Selecting Grid
-          var gview = this;
-          //Getting selected item
-          var selectedItem = gview.dataItem(gview.select());
-          console.log(selectedItem);
+          var row = e.sender.dataItem(e.sender.select());
+          console.log(row.requestId);
+          this.selectedRequestId=row.requestId
+          this.$emit('onSelectedRow',this.selectedRequestId) //send request id to parent control
       }
   },
   data () {
@@ -80,7 +75,8 @@ export default {
                 "dueToKL" : 17,
                 "deliveryDate" : "14.01.1977",
                 "purchaseOrder": "Nothing"
-            }]
+            }],
+        selectedRequestId : -1
       }
   }
 }

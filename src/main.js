@@ -5,9 +5,9 @@ import App from './App'
 import Orders from './components/Orders'
 import Commands from'./components/Orders'
 import '@progress/kendo-ui'
-import '@progress/kendo-theme-default/dist/all.css'
+import '@progress/kendo-theme-material/dist/all.css'
 import {
-  Button, 
+  Button,
   ButtonsInstaller
 } from '@progress/kendo-buttons-vue-wrapper'
 
