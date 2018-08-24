@@ -28,7 +28,7 @@
         <kendo-grid-column field="endUserDiscount" title="EUD" :width="30"></kendo-grid-column>
         <kendo-grid-column field="amount" title="Amount" :width="30"></kendo-grid-column>
         <kendo-grid-column field="partnerDiscount" title="PD" :width="40"></kendo-grid-column>
-        <kendo-grid-column field="dueToKL" title="DueToKL" :width="40"></kendo-grid-column>
+        <kendo-grid-column field="dueTo" title="DueTo" :width="40"></kendo-grid-column>
         <kendo-grid-column field="currency" title="Currency" :width="40"></kendo-grid-column>
         <kendo-grid-column field="deliveryDate" title="DeliveryDate" :width="60"></kendo-grid-column>
         <kendo-grid-column field="purchaseOrder" title="PO" :width="40"></kendo-grid-column>
@@ -59,7 +59,7 @@ export default {
                 "endUserDiscount": 10,
                 "amount": 456,
                 "partnerDiscount" : 45,
-                "dueToKL" : 17,
+                "dueTo" : 17,
                 "deliveryDate" : "14.01.1977",
                 "purchaseOrder": "Nothing"
             },
@@ -72,7 +72,7 @@ export default {
                 "endUserDiscount": 10,
                 "amount": 456,
                 "partnerDiscount" : 45,
-                "dueToKL" : 17,
+                "dueTo" : 17,
                 "deliveryDate" : "14.01.1977",
                 "purchaseOrder": "Nothing"
             }],
